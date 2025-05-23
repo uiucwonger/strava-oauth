@@ -1,8 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="refresh" content="1;url=com.echorower.strava://oauth">
     <title>Strava Redirect</title>
+    <script>
+      window.onload = function() {
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
+        if (code) {
+          window.location.href = `com.echorower.strava://oauth?code=${code}`;
+        } else {
+          document.body.innerText = "Authorization code not found.";
+        }
+      };
+    </script>
   </head>
   <body>
     <p>Redirecting to app...</p>
